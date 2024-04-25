@@ -11,7 +11,9 @@
         document.addEventListener('DOMContentLoaded', function() {
     // MQTT client initialization code here
     var broker = 'mqtt://178.232.251.168:1883';
-    var client = new Paho.Client(178.232.251.168, 1883, "clientId");
+    var hostname = "178.232.251.168"; // Example: "mqtt.example.com"
+    var port = 1883; // Example: 8883 for secure MQTT over WebSocket (wss://)
+    var client = new Paho.Client(location.hostname, Number(location.port), "clientId");
 
     client.connect({
         onSuccess: onConnect,
