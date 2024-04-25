@@ -13,7 +13,7 @@
     var broker = 'mqtt://178.232.251.168:1883';
     var hostname = "178.232.251.168"; // Example: "mqtt.example.com"
     var port = 443; // Example: 8883 for secure MQTT over WebSocket (wss://)
-    var client = new Paho.Client(location.hostname, Number(location.port), "clientId");
+    var client = new Paho.Client(location.hostname, Number(location.port), "clientId", useSSL=true);
 
     client.connect({
         onSuccess: onConnect,
