@@ -8,27 +8,31 @@
     <h1>MQTT Subscriber</h1>
 
     <script>
-        var broker = 'mqtt://178.232.251.168:1883';
-        var client = new Paho.MQTT.Client(broker, 'clientId');
+        document.addEventListener('DOMContentLoaded', function() {
+    // MQTT client initialization code here
+    var broker = 'mqtt://178.232.251.168:1883';
+    var client = new Paho.MQTT.Client(broker, 'clientId');
 
-        client.connect({
-            onSuccess: onConnect,
-            onFailure: onFailure
-        });
+    client.connect({
+        onSuccess: onConnect,
+        onFailure: onFailure
+    });
 
-        function onConnect() {
-            console.log("Connected to MQTT broker");
-            client.subscribe("your/topic");
-        }
+    function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("your/topic");
+    }
 
-        function onFailure(err) {
-            console.error("Failed to connect to MQTT broker", err);
-        }
+    function onFailure(err) {
+        console.error("Failed to connect to MQTT broker", err);
+    }
 
-        client.onMessageArrived = function(message) {
-            console.log("Received message: " + message.payloadString);
-            // Handle the incoming message here
-        };
+    client.onMessageArrived = function(message) {
+        console.log("Received message: " + message.payloadString);
+        // Handle the incoming message here
+    };
+});
+
     </script>
 </body>
 </html>
