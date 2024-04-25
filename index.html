@@ -15,10 +15,17 @@
     var port = 443; // Example: 8883 for secure MQTT over WebSocket (wss://)
     var client = new Paho.Client(location.hostname, Number(location.port), "clientId");
 
-    client.connect({
-        onSuccess: onConnect,
-        onFailure: onFailure
-    });
+    var connectOptions = {
+    useSSL: true, // Enable secure WebSocket (wss://)
+    onSuccess: function() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("your/topic");
+    },
+    onFailure: function(err) {
+        console.error("Failed to connect to MQTT broker", err);
+    }
+};
+    client.connect(connectOptions);
 
     function onConnect() {
         console.log("Connected to MQTT broker");
