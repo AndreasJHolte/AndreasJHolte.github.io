@@ -23,6 +23,9 @@
     },
     onFailure: function(err) {
         console.error("Failed to connect to MQTT broker", err);
+    },
+    sslOptions: {
+        caCertificate: "ca.crt" // Path to your ca.crt file
     }
 };
     client.connect(connectOptions);
