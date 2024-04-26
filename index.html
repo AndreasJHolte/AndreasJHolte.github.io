@@ -23,6 +23,10 @@
     },
     onFailure: function(err) {
         console.error("Failed to connect to MQTT broker", err);
+    },
+    ssl: {
+        key: fs.readFileSync('client.key'), 
+        cert: fs.readFileSync('client.crt')
     }
 };
     client.connect(connectOptions);
