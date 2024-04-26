@@ -16,18 +16,15 @@
     var client = new Paho.Client(hostname, Number(port), "clientId");
 
     var connectOptions = {
-    useSSL: true, // Enable secure WebSocket (wss://)
+    //useSSL: true, // Enable secure WebSocket (wss://)
     onSuccess: function() {
         console.log("Connected to MQTT broker");
         client.subscribe("your/topic");
     },
     onFailure: function(err) {
         console.error("Failed to connect to MQTT broker", err);
-    },
-    ssl: {
-        //key: fs.readFileSync('client.key'), 
-        cert: 'ca.crt'
     }
+    
 };
     client.connect(connectOptions);
 
