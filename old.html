@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MQTT Subscriber</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+</head>
+<body>
+    <h1>MQTT Subscriber</h1>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // MQTT client initialization code here
+    var broker = 'mqtt://178.232.251.168:1883';
+    var hostname = "178.232.251.168"; // Example: "mqtt.example.com"
+    var port = 8883; // Example: 8883 for secure MQTT over WebSocket (wss://)
+    var client = new Paho.Client(hostname, Number(port), "clientId");
+
+    var connectOptions = {
+    useSSL: true, // Enable secure WebSocket (wss://)
+    onSuccess: function() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("your/topic");
+    },
+    onFailure: function(err) {
+        console.error("Failed to connect to MQTT broker", err);
+    }
+};
+    client.connect(connectOptions);
+
+    function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("your/topic");
+    }
+
+    function onFailure(err) {
+        console.error("Failed to connect to MQTT broker", err);
+    }
+
+    client.onMessageArrived = function(message) {
+        console.log("Received message: " + message.payloadString);
+        // Handle the incoming message here
+    };
+});
+
+    </script>
+</body>
+</html>
